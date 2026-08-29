@@ -26,45 +26,51 @@ AREAS = {
         "name": "Contact &amp; Checking",
         "slug": "checking",
         "blocks": 18,
-        "blurb": "Angling, stick checks, receiving contact, and delivering it. Weeks 1-3 are contact and nothing else.",
-        "why": (
-            "14U is the first year of legal contact, and many players arrive with none of it. "
-            "Contact is not a unit we bolt on - it is the first thing we teach, before any system, "
-            "because everything else in this curriculum happens with a body arriving."
+        "quote": (
+            "Body contact is separating the player from the puck, "
+            "not the player from the game.",
+            "Bob O&rsquo;Connor, National Coach-In-Chief &middot; "
+            "USA Hockey, <i>Introduction to Body Contact</i>",
         ),
+        "blurb": "Contact confidence first, then body checks. Weeks 1-3 are contact only.",
+        "why": "",
+        "intro": (
+            "14U is the first year of legal contact, and half the team has never seen it. "
+            "They will see real checking in a game after Practice 2 - that deadline sets this progression."
+        ),
+        "steps_title": "Focus areas",
+        # Four focus areas, not a progression - receiving and delivering run together
+        # from Practice 1. The how-to lives in the drills and the on-ice cues.
         "steps": [
-            ("Positioning &amp; angling", "Week 1",
-             "Skate to take ice away. Approach on an angle, stick on the wrong side, close without lunging. No contact required to teach this."),
-            ("Stick checks &amp; body position", "Week 2",
-             "Poke, lift, press. Get your body between the man and the puck. Box-outs and wall pins."),
-            ("Receiving contact", "Week 3",
-             "Take a hit along the wall with your head up. Absorb into the boards, protective posture, escape pressure. The safety-critical step."),
-            ("Delivering contact", "Weeks 4-6",
-             "Legal check: angle plus timing, hands and elbows in control. And the read of when <em>not</em> to hit."),
+            ("Contact confidence", "Weeks 1-2", ""),
+            ("Body checks", "Weeks 1-2", ""),
+            ("Angling &amp; stick checks", "Week 3", ""),
+            ("Body blocks", "Weeks 4-6", ""),
         ],
         "say": [
-            "Take the ice away, not the body.",
-            "Head up, shoulder first, into the wall.",
-            "Stick on the wrong side.",
-            "Finish it or leave it - don't lunge.",
+            "Head up - always.",
+            "Out of the danger zone.",
+            "Move into the checker.",
+            "Body contact is separating the player from the puck, not the player from the game.",
         ],
         "errors": [
-            "Lunging at the hit instead of skating the angle. Costs the puck and the position.",
-            "Skating into the boards square and low - the injury posture. Turn the shoulder, keep the head up.",
+            "Lunging at the hit. Take an angle. Always.",
+            "Into the boards square, feet together. Skates parallel, knees bent, forearm and hip take it.",
+            "Turning your back or jumping out of a check. Face it, and move into it low.",
+            "Skating in the danger zone with pressure - inside a stick length of the boards. "
+            "Get to the boards or get away.",
+            "Hands and elbows above the shoulders. That's a penalty, not a check.",
             "Chasing a hit that isn't there while a teammate is left uncovered.",
+            "Gliding once you're alongside him. Skate through the contact or he skates out of it.",
         ],
-        "note": (
-            "Weeks 1-3 are checking and nothing else - no triangles, no systems. "
-            "After Week 6 contact becomes a <b>thread</b>: it lives inside battles, games and rotations, "
-            "never as a standalone block again. Three refreshers are scheduled at Weeks 10, 14 and 15."
-        ),
+        "note": "",
     },
     "TRI": {
         "published": False,
         "name": "Triangles",
         "slug": "triangles",
         "blocks": 24,
-        "blurb": "Our shape <em>with the puck</em>. Always two options at good angles. Same shape in all three zones - only the ice changes.",
+        "blurb": "Our system <em>with the puck</em>. Always two options at good angles.",
         "why": (
             "Breakout, entry and O-zone problems are usually one problem in three jerseys: players "
             "don't know where to be relative to the puck and each other. Triangles are the grammar. "
@@ -101,10 +107,10 @@ AREAS = {
     },
     "PTH": {
         "published": False,
-        "name": "Protect the House",
+        "name": "Protect the House (D-Zone System)",
         "slug": "protect-the-house",
         "blocks": 20,
-        "blurb": "Defend space, not people. Give up the outside, lock the middle, always keep a layer behind.",
+        "blurb": "Defend space, not people. Layers and support.",
         "why": (
             "A kid who doesn't know <em>who</em> to cover still knows <em>where</em> to stand. "
             "That is the whole point with variable turnout and mixed experience - this system survives "
@@ -130,8 +136,8 @@ AREAS = {
             "Standing beside a man instead of between him and the net.",
         ],
         "note": (
-            "Checking made this easier than it looks. Protect-the-House <em>is</em> Week 1-2 angling and "
-            "box-outs run five-on-five - we name the system in Week 8 and find the habits are already there.<br><br>"
+            "Checking made this easier than it looks. Protect-the-House <em>is</em> Week 3 angling and "
+            "Week 4 body blocks run five-on-five - we name the system in Week 8 and find the habits are already there.<br><br>"
             "<b>Known trade-off:</b> this concedes point shots and the outside. If league opponents have a blue-line "
             "bomb, we add one hybrid read (pressure the puck-carrier strong side, everyone else holds). "
             "Decision point is Week 8, from game evidence - not scheduled by default.<br><br>"
@@ -144,7 +150,7 @@ AREAS = {
         "name": "Breakout / Forecheck",
         "slug": "breakout-forecheck",
         "blocks": 18,
-        "blurb": "Taught together, both directions. The same triangle run under pressure and against pressure.",
+        "blurb": "Use Triangles for Breakouts, install Forecheck approach (1-2-2 or 2-1-2 - TBD).",
         "why": (
             "Breakout and forecheck are the same picture from opposite ends. Teaching them together means "
             "every rep is contested by definition - no unopposed breakouts that fall apart the moment "
@@ -179,7 +185,7 @@ AREAS = {
         "name": "Zone Entry",
         "slug": "zone-entry",
         "blocks": 16,
-        "blurb": "The triangle carried through the neutral zone with a trailer. Then get to the net.",
+        "blurb": "Triangles applied to zone entry w/ O-zone options (cycling).",
         "why": (
             "Entries are where offence actually gets generated at this level - not from sustained cycling. "
             "Get in with possession and support, drive the net, and have a shape to fall into if it doesn't produce."
@@ -213,7 +219,7 @@ AREAS = {
 
 # Said every practice, all season. One name, two directions.
 THEMES = [
-    ("Safe", "Head up, on the wall or off it. Meet the hit, don't take it."),
+    ("Safe", "Head Up. Out of the danger zone. Meet the hit, don't take it."),
     ("Team First", "Triangle support when attacking, play your zone when defending."),
     ("Net Front", "Crash it on offense, protect it on defense."),
     ("Quick Decisions", "3 seconds max. Move the puck or shoot it."),
@@ -222,21 +228,26 @@ THEMES = [
 SEGMENTS = ["Opening game", "Station A", "Station B", "Closing game"]
 
 # week, phase, theme, [(area, description) x4] matching SEGMENTS order
+#
+# The theme and the per-segment descriptions are NOT published anywhere - they are
+# the reference used to build each practice in Ice Hockey Systems. Only the area
+# tag reaches the site (as a badge, and in the per-area block counts); real drill
+# names appear on the Season Plan once a practice is logged into data/practices.csv.
 WEEKS = [
-    (1, "Checking only", "Angling - take the ice away",
-     [("CHK", "Approach angles"), ("CHK", "Closing without lunging"), ("CHK", "Stick on the wrong side"), ("CHK", "Angling races")]),
-    (2, "Checking only", "Stick checks &amp; body position",
-     [("CHK", "Poke, lift, press"), ("CHK", "Body between man and puck"), ("CHK", "Box-outs"), ("CHK", "Wall pins")]),
-    (3, "Checking only", "Receiving contact",
-     [("CHK", "Protective posture"), ("CHK", "Absorbing into the boards"), ("CHK", "Head up along the wall"), ("CHK", "Contested wall battles")]),
+    (1, "Checking only", "Giving &amp; receiving contact",
+     [("CHK", "Angling to contact"), ("CHK", "Step forward, absorb it"), ("CHK", "Shoulder to shoulder, both roles"), ("CHK", "Contested wall battles")]),
+    (2, "Checking only", "Contact on the wall",
+     [("CHK", "Protective posture"), ("CHK", "Take-out check, hips ahead"), ("CHK", "Skates parallel, forearm and hip"), ("CHK", "1v1 wall checks")]),
+    (3, "Checking only", "Angling &amp; stick checks",
+     [("CHK", "Approach angles"), ("CHK", "Stick on the wrong side"), ("CHK", "Poke, lift, press"), ("CHK", "Angling races")]),
     (4, "Triangles install", "The shape",
-     [("CHK", "Angling game"), ("TRI", "Two options at good angles"), ("TRI", "Holding the shape"), ("TRI", "3v3 triangle game")]),
+     [("CHK", "Body block - steer, don't hit"), ("TRI", "Two options at good angles"), ("TRI", "Holding the system"), ("TRI", "3v3 triangle game")]),
     (5, "Triangles install", "Support angles",
-     [("CHK", "Delivering contact"), ("TRI", "Moving to open ice"), ("TRI", "Receiving in stride"), ("TRI", "3v3 constrained")]),
+     [("CHK", "Take-out check, live"), ("TRI", "Moving to open ice"), ("TRI", "Receiving in stride"), ("TRI", "3v3 constrained")]),
     (6, "Triangles install", "Passing through the triangle",
-     [("CHK", "Contact confidence"), ("TRI", "Passing under pressure"), ("TRI", "Give-and-go"), ("TRI", "Small-area keepaway")]),
+     [("CHK", "When not to hit"), ("TRI", "Passing under pressure"), ("TRI", "Give-and-go"), ("TRI", "Small-area keepaway")]),
     (7, "Triangles install", "The moving triangle",
-     [("TRI", "Shape on the move"), ("TRI", "Rotating support"), ("TRI", "Puck movement and timing"), ("TRI", "4v4")]),
+     [("TRI", "System on the move"), ("TRI", "Rotating support"), ("TRI", "Puck movement and timing"), ("TRI", "4v4")]),
     (8, "Protect the House", "The House",
      [("TRI", "Keepaway"), ("PTH", "Defend space, not people"), ("PTH", "Sticks in lanes"), ("PTH", "3v3 low")]),
     (9, "Protect the House", "Layers",
@@ -248,11 +259,11 @@ WEEKS = [
     (12, "Breakout / Forecheck", "Breakout - triangle under pressure",
      [("PTH", "Box-out"), ("BFC", "Support triangle in our end"), ("BFC", "D-to-D, wall option"), ("BFC", "Breakout vs forecheck")]),
     (13, "Breakout / Forecheck", "Both ways",
-     [("TRI", "Shape"), ("BFC", "Retrieval under pressure"), ("BFC", "First-pass options"), ("BFC", "Live, both directions")]),
+     [("TRI", "System"), ("BFC", "Retrieval under pressure"), ("BFC", "First-pass options"), ("BFC", "Live, both directions")]),
     (14, "Pre-break", "Integration",
      [("CHK", "Refresher"), ("PTH", "Layers live"), ("BFC", "Breakout live"), ("PTH", "Full-pressure game")]),
     (15, "Reset", "Reset",
-     [("TRI", "Shape"), ("CHK", "Refresher"), ("TRI", "Support angles"), ("TRI", "3v3")]),
+     [("TRI", "System"), ("CHK", "Refresher"), ("TRI", "Support angles"), ("TRI", "3v3")]),
     (16, "Zone entry", "Entry - carry &amp; trailer",
      [("TRI", "Support"), ("ZE", "Triangle through the neutral zone"), ("ZE", "The trailer"), ("ZE", "3v2 entry")]),
     (17, "Zone entry", "Entry - the read",
@@ -278,7 +289,7 @@ BREAK_AFTER = 14
 # Weekly from 11 Sep 2026. Ice is booked through 27 Nov; the slot after that is
 # not yet set, so later weeks carry no date rather than a guess.
 # The fixed 5 min checking block rotates through the four steps all season.
-CHECKING_CYCLE = ["Angling", "Stick checks", "Receiving contact", "Delivering contact"]
+CHECKING_CYCLE = ["Contact confidence", "Body checks", "Angling", "Stick checks"]
 
 SEASON_START = datetime.date(2026, 9, 11)
 LAST_BOOKED = datetime.date(2026, 11, 27)
@@ -423,6 +434,7 @@ def build_index(counts, drills):
     cards = ""
     for i, (tag, a) in enumerate(AREAS.items(), 1):
         n = sum(1 for d in drills if tag in d["areas"].split("|"))
+        blurb_p = f"<p>{a['blurb']}</p>" if a["blurb"] else ""
         if a["published"]:
             open_tag = f'<a class="card" style="--tag:var(--{tag.lower()})" href="areas/{a["slug"]}.html">'
             close_tag = "</a>"
@@ -432,7 +444,7 @@ def build_index(counts, drills):
             close_tag = "</div>"
             extra = '<span class="seg">in review</span>'
         cards += f"""{open_tag}
-<div class="tag">{i} &middot; {tag}</div><h3>{i}. {a['name']}</h3><p>{a['blurb']}</p>
+<div class="tag">{i} &middot; {tag}</div><h3>{i}. {a['name']}</h3>{blurb_p}
 <div class="meta"><span><b>{counts[tag]}</b> blocks</span><span><b>{n}</b> drills</span>{extra}</div>{close_tag}"""
 
     prows = "".join(
@@ -486,8 +498,6 @@ def build_weeks(counts, practices):
         tags = [pill(a) for a, _ in segs]
         plan = practices.get(wk)
         fills = segment_drills(plan) if plan else {}
-        plan = practices.get(wk)
-        fills = segment_drills(plan) if plan else {}
         logged = fills.get("check", [])
         if logged:
             check = "<td>" + "".join(drill_html(d) for d in logged) + "</td>"
@@ -505,8 +515,8 @@ def build_weeks(counts, practices):
                 continue
             badge = tag or " ".join(
                 dict.fromkeys(b for b in (bonus_badge(d["name"]) for d in items) if b))
-            inner = badge + "".join(drill_html(d) for d in items)
-            cells += f"<td>{inner}</td>"
+            # Drill names appear only once a practice has actually been logged.
+            cells += f'<td>{badge}{"".join(drill_html(d) for d in items)}</td>' 
             if col == 0:
                 cells += check
         plan_url = plan["url"] if plan else ""
@@ -561,16 +571,6 @@ def build_area(tag, counts, drills):
     say = "".join(f"<q>{s}</q>" for s in a["say"])
     errors = "".join(f"<li>{e}</li>" for e in a["errors"])
 
-    wk_rows = ""
-    for wk, _, theme, segs in WEEKS:
-        hits = [(SEGMENTS[i], d) for i, (ar, d) in enumerate(segs) if ar == tag]
-        if not hits:
-            continue
-        for n, (seg, desc) in enumerate(hits):
-            first = (f'<td class="wk" rowspan="{len(hits)}">{wk}</td>'
-                     f'<td rowspan="{len(hits)}">{theme}</td>') if n == 0 else ""
-            wk_rows += f'<tr>{first}<td class="seg">{seg}</td><td>{desc}</td></tr>'
-
     mine = [d for d in drills if tag in d["areas"].split("|")]
     if mine:
         def drill_cell(d):
@@ -594,37 +594,40 @@ def build_area(tag, counts, drills):
         drill_html = '<p class="lede">No drills tagged to this area yet.</p>'
 
     num = list(AREAS).index(tag) + 1
+    blurb_p = f"<p>{a['blurb']}</p>" if a["blurb"] else ""
+    intro_p = f'<p class="lede">{a["intro"]}</p>' if a.get("intro") else ""
+    note_div = f'<div class="note">{a["note"]}</div>\n\n' if a["note"] else ""
+    why_section = (f'<h2>Why this, for this team</h2>\n<p class="lede">{a["why"]}</p>\n\n'
+                   if a["why"] else "")
+
+    epigraph = ""
+    if a.get("quote"):
+        text, source = a["quote"]
+        epigraph = (f'<blockquote class="epigraph"><p>&ldquo;{text}&rdquo;</p>'
+                    f'<cite>{source}</cite></blockquote>')
+
     body = f"""<section class="hero">
 <h1>{num}. {a['name']} {pill(tag)}</h1>
-<p>{a['blurb']}</p>
+{epigraph}
+{blurb_p}
 <dl class="facts">
 <div><dt>Blocks</dt><dd>{counts[tag]}</dd></div>
 <div><dt>Drills</dt><dd>{len(mine)}</dd></div>
 </dl>
 </section>
 
-<h2>Why this, for this team</h2>
-<p class="lede">{a['why']}</p>
-
-<h2>The progression</h2>
+{why_section}<h2>{a.get("steps_title", "The progression")}</h2>
+{intro_p}
 <ol class="steps">{steps}</ol>
 
-<div class="note">{a['note']}</div>
-
-<h2>What to say on the ice</h2>
+{note_div}<h2>What to say on the ice</h2>
 <p class="lede">Same words from every coach. The kids should hear one phrase, not four versions of it.</p>
 <div class="say">{say}</div>
 
 <h2>What goes wrong</h2>
 <ul class="rules">{errors}</ul>
 
-<h2>Where it appears - {counts[tag]} blocks</h2>
-<div class="scroll"><table>
-<thead><tr><th>Wk</th><th>Theme</th><th>Segment</th><th>Focus</th></tr></thead>
-<tbody>{wk_rows}</tbody></table></div>
-
-<h2>Drills - {len(mine)} tagged</h2>
-<p class="lede">From the 2025-26 library. Links go to Ice Hockey Systems.</p>
+<h2>Drills</h2>
 {drill_html}
 """
     return page(a["name"], body, a["name"], depth=1)

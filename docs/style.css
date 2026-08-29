@@ -60,6 +60,27 @@ header.site nav a:hover, header.site nav a[aria-current] { color: var(--ink); }
 .hero { padding: 3rem 0 2rem; border-bottom: 1px solid var(--border); margin-bottom: 2.5rem; }
 .hero h1 { font-size: clamp(1.9rem, 5vw, 2.9rem); line-height: 1.12; margin: 0 0 0.75rem; letter-spacing: -0.02em; }
 .hero p { font-size: 1.1rem; color: var(--muted); margin: 0; max-width: 46rem; }
+.epigraph {
+  margin: 0 0 1.25rem;
+  padding: 0.1rem 0 0.1rem 1.1rem;
+  border-left: 3px solid var(--chk);
+  max-width: 44rem;
+}
+.epigraph p {
+  margin: 0;
+  font-size: 1.22rem;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.epigraph cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-style: normal;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
 .facts { display: flex; flex-wrap: wrap; gap: 1.75rem; margin-top: 1.75rem; }
 .facts div { min-width: 5rem; }
 .facts dt { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); }

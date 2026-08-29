@@ -55,6 +55,30 @@ BONUS_THEMES = {"Shooting", "Goalie", "Fun", "Power Play", "Penalty Kill", "Skat
 BONUS_SUBS = {"Face-Offs", "Quick Release", "One-Timers", "Snapshot", "Slapshot", "Breakaways"}
 
 
+# Drills that are not in the IHS export. The 2025-26 library is weighted to the
+# player delivering a check; these two are the only dedicated reps at taking one,
+# so they are appended here rather than edited into the untouched source export.
+# Source: USA Hockey, "Introduction to Body Contact" (Contact Confidence drills).
+EXTRA_DRILLS = [
+    {
+        "drill": "Twigs Body Contact Drill",
+        "areas": "CHK",
+        "bonus": "",
+        "themes": "Competitive Contact",
+        "subcategories": "Delivering and Receiving Body Contact",
+        "link": "",
+    },
+    {
+        "drill": "Bump Back Drill",
+        "areas": "CHK",
+        "bonus": "",
+        "themes": "Competitive Contact",
+        "subcategories": "Delivering and Receiving Body Contact",
+        "link": "",
+    },
+]
+
+
 def split_multi(value):
     return {part.strip() for part in value.split(",") if part.strip()}
 
@@ -91,6 +115,9 @@ def main():
             "subcategories": "|".join(sorted(subs)),
             "link": link,
         })
+
+    have = {r["drill"] for r in out}
+    out.extend(d for d in EXTRA_DRILLS if d["drill"] not in have)
 
     with OUT.open("w", newline="") as fh:
         writer = csv.DictWriter(

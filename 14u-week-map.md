@@ -41,20 +41,22 @@ No triangles, no systems. Full practice on contact, all four segments.
 
 | Wk | Theme | Opening | Station A | Station B | Closing |
 |---|---|---|---|---|---|
-| 1 | Angling — take the ice away | CHK approach angles | CHK closing without lunging | CHK stick on the wrong side | CHK angling races |
-| 2 | Stick checks & body position | CHK poke/lift/press | CHK body between man & puck | CHK box-outs | CHK wall pins |
-| 3 | Receiving contact | CHK protective posture | CHK absorbing into boards | CHK head up along the wall | CHK contested wall battles |
+| 1 | Giving & receiving contact | CHK angling to contact | CHK step forward, absorb it | CHK shoulder to shoulder, both roles | CHK contested wall battles |
+| 2 | Contact on the wall | CHK protective posture | CHK take-out check, hips ahead | CHK skates parallel, forearm & hip | CHK 1v1 wall checks |
+| 3 | Angling & stick checks | CHK approach angles | CHK stick on the wrong side | CHK poke/lift/press | CHK angling races |
 
-> Step 4 (delivering contact) rides inside W4–6 Station A, weighted light.
-> Receiving is the safety-critical step and gets the full week.
+> **Out of USA Hockey's order, on purpose.** These players see real checking in a
+> game after Practice 2, so giving and receiving come first, taught together. Angling and stick
+> checks — two seasons old for this group — are refreshed in W3 as the alternative
+> to hitting. Body blocks move to W4.
 
 ## Phase 2 — Triangles install (W4–7)
 
 | Wk | Theme | Opening | Station A | Station B | Closing |
 |---|---|---|---|---|---|
-| 4 | The shape | CHK angling game | TRI two options, good angles | TRI holding the shape | TRI 3v3 triangle game |
-| 5 | Support angles | CHK delivering contact | TRI moving to open ice | TRI receiving in stride | TRI 3v3 constrained |
-| 6 | Passing through the triangle | CHK contact confidence | TRI passing under pressure | TRI give-and-go | TRI small-area keepaway |
+| 4 | The shape | CHK body block — steer, don't hit | TRI two options, good angles | TRI holding the shape | TRI 3v3 triangle game |
+| 5 | Support angles | CHK take-out check, live | TRI moving to open ice | TRI receiving in stride | TRI 3v3 constrained |
+| 6 | Passing through the triangle | CHK when not to hit | TRI passing under pressure | TRI give-and-go | TRI small-area keepaway |
 | 7 | The moving triangle | TRI shape on the move | TRI rotating support | TRI puck movement + timing | TRI 4v4 |
 
 > CHK hits 15 blocks here. Remaining 3 are refreshers at W10, W14, W15.
@@ -65,10 +67,10 @@ No triangles, no systems. Full practice on contact, all four segments.
 |---|---|---|---|---|---|
 | 8 | The House | TRI keepaway | PTH defend space, not people | PTH sticks in lanes | PTH 3v3 low |
 | 9 | Layers | TRI support | PTH second man covers | PTH front the net | PTH 3v3 with layer |
-| 10 | Box out & clear | CHK refresher | PTH box-outs (= W2 five-on-five) | PTH angle it outside | PTH clear the zone |
+| 10 | Box out & clear | CHK refresher | PTH box-outs (= W4 five-on-five) | PTH angle it outside | PTH clear the zone |
 
-> Checking made this easier than it looks. Protect-the-House is W1–2 angling
-> and box-outs run five-on-five. Name the system; the habits are already there.
+> Checking made this easier than it looks. Protect-the-House is W3 angling
+> and W4 body blocks run five-on-five. Name the system; the habits are already there.
 
 ## Phase 4 — Breakout / Forecheck install (W11–13)
 
