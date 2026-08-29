@@ -10,6 +10,7 @@
   --pth: #15803d;
   --bfc: #7c3aed;
   --ze: #b45309;
+  --shoot: #0e7490;
   --radius: 10px;
   --maxw: 78rem;
 }
@@ -27,6 +28,7 @@
     --pth: #4ade80;
     --bfc: #c4b5fd;
     --ze: #fbbf24;
+    --shoot: #67e8f9;
   }
 }
 
@@ -98,7 +100,10 @@ tfoot td { font-weight: 650; border-top: 2px solid var(--border); }
   padding: 0.12rem 0.42rem; border-radius: 4px; border: 1px solid currentColor; white-space: nowrap;
 }
 .CHK { color: var(--chk); } .TRI { color: var(--tri); } .PTH { color: var(--pth); }
-.BFC { color: var(--bfc); } .ZE { color: var(--ze); }
+.BFC { color: var(--bfc); } .ZE { color: var(--ze); } .SHOOT { color: var(--shoot); }
+.dr { display: block; font-size: 0.82rem; line-height: 1.35; margin-top: 0.2rem; }
+.dr a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--border); }
+.dr a:hover { color: var(--accent); border-color: currentColor; }
 .seg { color: var(--muted); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
 
 /* ---- phase strip ---- */

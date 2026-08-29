@@ -21,8 +21,10 @@ AREA_RULES = {
         {"Competitive Contact", "Angling"},
         {"Angling", "Delivering and Receiving Body Contact", "Gap Control"},
     ),
+    # Triangles are a possession shape only. Every Triangles-tagged drill in the
+    # source is an offensive/transition drill, so the tag is safe on either axis.
     "TRI": (
-        {"Passing and Receiving", "Puck Control", "Stickhandling"},
+        {"Passing and Receiving", "Puck Control", "Stickhandling", "Triangles"},
         {"Triangles", "Quick Decisions", "One Touch", "Cycling"},
     ),
     "PTH": (
@@ -39,7 +41,16 @@ AREA_RULES = {
     ),
 }
 
-# Themes that only ever belong in the optional Station 3 pool.
+# The source export has a fill-down error: three drills inherited the previous
+# row's link. Where the correct URL is known it is corrected; where it is not,
+# the link is dropped, because a wrong link is worse than none.
+LINK_FIXES = {
+    "Royal Road Drill": "https://www.icehockeysystems.com/hockey-drills/royal-road-drill",
+    "1 v 1 Angle Around The Net Drill": "",
+    "Quick Release & Reaction Shooting": "",
+}
+
+# Themes that only ever belong in the optional Station C pool.
 BONUS_THEMES = {"Shooting", "Goalie", "Fun", "Power Play", "Penalty Kill", "Skating"}
 BONUS_SUBS = {"Face-Offs", "Quick Release", "One-Timers", "Snapshot", "Slapshot", "Breakaways"}
 
@@ -58,6 +69,7 @@ def main():
         themes = split_multi(row[2]) if len(row) > 2 else set()
         subs = split_multi(row[3]) if len(row) > 3 else set()
         link = row[4].strip() if len(row) > 4 else ""
+        link = LINK_FIXES.get(name, link)
 
         areas = []
         for area, (t_match, s_match) in AREA_RULES.items():

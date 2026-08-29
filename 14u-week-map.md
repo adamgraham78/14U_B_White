@@ -25,7 +25,7 @@ never a standalone block.
   the group may miss the first four minutes. It carries revisit and compete only.
 - **The closing game is the week's theme under pressure.** Its tag always matches
   the install.
-- **Station 3 is bonus only.** It runs when a 4th coach shows and numbers allow —
+- **Station C is bonus only.** It runs when a 4th coach shows and numbers allow —
   shooting, faceoffs, individual skills. It is *not* part of the 96 and nothing in
   this map depends on it. Never put install content there; kids who miss it must
   miss nothing.

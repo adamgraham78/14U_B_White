@@ -17,13 +17,40 @@ eleven taught badly.
 ## Layout
 
 ```
-14u-week-map.md             the 24-week map in markdown
+14u-week-map.md             the season plan in markdown
 docs/                       generated site (GitHub Pages serves from here)
 data/drills-source.csv      2025-26 B Red export, unmodified
 data/drills.csv             normalized: drills tagged to the five areas
+data/practices.csv          logged practices, one row per drill
+inbox/                      pasted IHS practice text, archived
 scripts/normalize_drills.py source CSV -> data/drills.csv
-scripts/build_site.py       week map + drills -> docs/
+scripts/log_practice.py     pasted IHS text -> data/practices.csv
+scripts/fetch_practice.py   Playwright scraper (parked, see below)
+scripts/build_site.py       season plan + drills + practices -> docs/
 ```
+
+## Logging a practice
+
+In Ice Hockey Systems, add separator entries as section headers - any line with
+three or more dashes. `(10 min)` in a header is captured as that section's
+duration. Anything above the first header is treated as off-ice pre-practice
+work. A section named for games with more than one entry is logged as options.
+
+    ----Warm-Up (10 min) ----
+    --------- Checking ---------
+    --------- Stations ---------
+    ---- Small Area Games ----
+
+Copy the drill list, save it to `inbox/week-NN.txt`, then:
+
+```sh
+python3 scripts/log_practice.py --week 1 --url <share-url> --title "..." inbox/week-01.txt
+python3 scripts/build_site.py
+```
+
+`fetch_practice.py` scrapes the same data directly, but IHS sits behind a
+Cloudflare challenge that only a real headed Chrome clears, and repeated hits
+get rate-limited. It is kept for reference; the paste path is the one to use.
 
 ## Editing
 
