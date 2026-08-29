@@ -54,6 +54,8 @@ AREAS = {
             "Body contact is separating the player from the puck, not the player from the game.",
         ],
         "errors": [
+            "Skating with your head down. Know who's around you. Don't watch the puck with "
+            "pressure near. Head down is how you get leveled.",
             "Lunging at the hit. Take an angle. Always.",
             "Into the boards square, feet together. Skates parallel, knees bent, forearm and hip take it.",
             "Turning your back or jumping out of a check. Face it, and move into it low.",
