@@ -303,7 +303,7 @@ PRACTICES = ROOT / "data" / "practices.csv"
 
 PRACTICE = [
     ("Opening game", "10 min", "Small-area game, full group",
-     "Revisit and compete only.", False),
+     "Revisit previous focus areas.", False),
     ("Checking", "5 min", "Fixed ritual, every practice",
      "Non-negotiable, like form tackling.", False),
     ("Stations", "20 min", "Two teaching blocks, 10 min each",
@@ -476,14 +476,19 @@ def build_index(counts, drills):
 <div class="cards">{cards}</div>
 <p><a href="weeks.html">See the full season plan &rarr;</a></p>
 
+<h2>Skill Development</h2>
+<ul class="rules">
+<li><b>Station C, when the coaches are there.</b> An optional station for individual skills.</li>
+<li><b>Small-area games build skills too.</b> Passing, stickhandling, shooting and skating are
+taught in the drills and games that build each system.</li>
+<li><b>Outside sessions.</b> Players are encouraged to attend the weekly O&rsquo;Sullivan Skills
+and Driscoll sessions.</li>
+</ul>
+
 <h2>Practice Structure</h2>
 <div class="scroll"><table>
 <thead><tr><th>Segment</th><th class="num">Time</th><th>Format</th><th>Notes</th></tr></thead>
 <tbody>{prows}</tbody></table></div>
-
-<h2>What we are not doing</h2>
-<p class="lede">Power play, penalty kill, faceoff plays, set O-zone systems, and dedicated skating
-or shooting blocks. These live in our optional Station C.</p>
 """
     return page("Overview", body, "Overview")
 
