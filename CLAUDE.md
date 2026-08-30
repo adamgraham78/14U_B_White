@@ -39,7 +39,10 @@ drills only. Planning notes with team detail stay local and gitignored.
 
 ## Next up
 
-Contact & Checking is done and pushed. Open items, in rough priority:
+Contact & Checking is done and pushed. The Overview now carries a **Skill
+Development** section (Station C, small-area games, outside O'Sullivan/Driscoll
+sessions) in place of the old "What we are not doing". Open items, in rough
+priority:
 
 1. **Twigs Body Contact** and **Bump Back** are in the drill library but have no
    link or description - they came from the USA Hockey manual, not IHS. They are
@@ -48,3 +51,10 @@ Contact & Checking is done and pushed. Open items, in rough priority:
 2. Forecheck approach is **1-2-2 or 2-1-2, TBD** - and that TBD is visible on the
    public Overview card.
 3. Build Practice 2 (Week 2: contact on the wall), then log it.
+4. `14u-week-map.md` is behind the site: it lists four segments and calls contact
+   a thread after Week 6, but the site runs a fixed 5-min checking ritual every
+   practice (`PRACTICE`, and the Checking column on the Season Plan fed by
+   `CHECKING_CYCLE`). The 96-block audit does not count those 24 rituals.
+5. Head-first into the boards is no longer stated in the CHK errors list. The
+   head-down bullet covers open-ice awareness; the danger-zone bullet covers
+   position, not head position.
