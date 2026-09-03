@@ -26,17 +26,19 @@ AREAS = {
         "name": "Contact &amp; Checking",
         "slug": "checking",
         "blocks": 18,
+        # Block 1 of the season - the three checking-only practices.
+        "practice_weeks": (1, 3),
         "quote": (
             "Body contact is separating the player from the puck, "
             "not the player from the game.",
             "Bob O&rsquo;Connor, National Coach-In-Chief &middot; "
             "USA Hockey, <i>Introduction to Body Contact</i>",
         ),
-        "blurb": "Contact confidence first, then body checks. Weeks 1-3 are contact only.",
+        "blurb": "",
         "why": "",
         "intro": (
             "14U is the first year of legal contact, and half the team has never seen it. "
-            "They will see real checking in a game after Practice 2 - that deadline sets this progression."
+            "They will see real checking in a game after Practice 2."
         ),
         "steps_title": "Focus areas",
         # Four focus areas, not a progression - receiving and delivering run together
@@ -47,24 +49,36 @@ AREAS = {
             ("Angling &amp; stick checks", "Week 3", ""),
             ("Body blocks", "Weeks 4-6", ""),
         ],
+        # Focus area -> the drills sub-category that trains it.
+        "step_drills": {
+            "Contact confidence": "Delivering and Receiving Body Contact",
+            "Body checks": "Delivering and Receiving Body Contact",
+            "Angling &amp; stick checks": "Angling",
+            "Body blocks": "Gap Control",
+        },
         "say": [
             "Head up - always.",
             "Out of the danger zone.",
             "Move into the checker.",
             "Body contact is separating the player from the puck, not the player from the game.",
         ],
-        "errors": [
-            "Skating with your head down. Know who's around you. Don't watch the puck with "
-            "pressure near. Head down is how you get leveled.",
-            "Lunging at the hit. Take an angle. Always.",
-            "Into the boards square, feet together. Skates parallel, knees bent, forearm and hip take it.",
-            "Turning your back or jumping out of a check. Face it, and move into it low.",
-            "Skating in the danger zone with pressure - inside a stick length of the boards. "
-            "Get to the boards or get away.",
-            "Hands and elbows above the shoulders. That's a penalty, not a check.",
-            "Chasing a hit that isn't there while a teammate is left uncovered.",
-            "Gliding once you're alongside him. Skate through the contact or he skates out of it.",
-        ],
+        # Grouped: the two halves of contact are different lessons.
+        "errors": {
+            "Taking a check": [
+                "Skating with your head down. Know who's around you. Don't watch the puck with "
+                "pressure near. Head down is how you get leveled.",
+                "Into the boards square, feet together. Skates parallel, knees bent, forearm and hip take it.",
+                "Turning your back or jumping out of a check. Face it, and move into it low.",
+                "Skating in the danger zone with pressure - inside a stick length of the boards. "
+                "Get to the boards or get away.",
+            ],
+            "Delivering a check": [
+                "Lunging at the hit. Take an angle. Always.",
+                "Hands and elbows above the shoulders. That's a penalty, not a check.",
+                "Chasing a hit that isn't there while a teammate is left uncovered.",
+                "Gliding once you're alongside him. Skate through the contact or he skates out of it.",
+            ],
+        },
         "note": "",
     },
     "TRI": {
@@ -495,11 +509,16 @@ and Driscoll sessions.</li>
     return page("Overview", body, "Overview")
 
 
-def build_weeks(counts, practices):
+def season_table(weeks, practices, phases=True):
+    """The Season Plan grid - one row per practice, a column per segment.
+
+    Shared by the Season Plan and the per-area practice lists, so an area page
+    shows its practices in exactly the format coaches already read.
+    """
     rows = ""
     phase_seen = None
-    for wk, phase, theme, segs in WEEKS:
-        if phase != phase_seen:
+    for wk, phase, theme, segs in weeks:
+        if phases and phase != phase_seen:
             rows += f'<tr><td colspan="9" style="background:var(--bg);font-weight:650">{phase}</td></tr>'
             phase_seen = phase
         tags = [pill(a) for a, _ in segs]
@@ -533,16 +552,23 @@ def build_weeks(counts, practices):
         when = (f'<td class="wk" style="font-weight:400">{d.strftime("%a %-d %b")}</td>'
                 if d else '<td class="seg">TBD</td>')
         rows += f'<tr><td class="wk">{wk}</td>{when}{cells}</tr>'
-        if wk == BREAK_AFTER:
+        if wk == BREAK_AFTER and wk != weeks[-1][0]:
             rows += ('<tr><td colspan="9" style="background:var(--bg);color:var(--muted)">'
                      '&#127876; Holiday break - minimum 7 days off (ADM)</td></tr>')
 
     cols = ([SEGMENTS[0], "Checking <span style='font-weight:400;text-transform:none'>(5 min)</span>"]
             + SEGMENTS[1:3]
             + ["Station C <span style='font-weight:400;text-transform:none'>(optional)</span>"]
-            + SEGMENTS[3:])
-    cols = cols + ["Practice plan"]
+            + SEGMENTS[3:]
+            + ["Practice plan"])
     heads = "".join(f"<th>{c}</th>" for c in cols)
+    return f"""<div class="scroll"><table>
+<thead><tr><th>Wk</th><th>Date</th>{heads}</tr></thead>
+<tbody>{rows}</tbody>
+</table></div>"""
+
+
+def build_weeks(counts, practices):
     audit_rows = "".join(
         f'<tr><td>{pill(t)} {a["name"]}</td><td class="num">{counts[t]}</td>'
         f'<td class="num">{a["blocks"]}</td></tr>'
@@ -554,10 +580,7 @@ def build_weeks(counts, practices):
 <h1>Season Plan</h1>
 </section>
 
-<div class="scroll"><table>
-<thead><tr><th>Wk</th><th>Date</th>{heads}</tr></thead>
-<tbody>{rows}</tbody>
-</table></div>
+{season_table(WEEKS, practices)}
 
 <h2>Block audit</h2>
 <div class="scroll"><table>
@@ -569,36 +592,135 @@ def build_weeks(counts, practices):
     return page("Season Plan", body, "Season Plan")
 
 
-def build_area(tag, counts, drills):
+def area_practices(tag, practices):
+    """The Season Plan rows for this area's practices, in the same format.
+
+    An area names its own week range in AREAS["practice_weeks"]; otherwise every
+    week carrying a block in the area is listed.
+    """
+    weeks = area_weeks(tag)
+    if not weeks:
+        return ""
+    return f"""<h2>Practices</h2>
+{season_table(weeks, practices, phases=False)}
+<p><a href="../weeks.html">See the full season plan &rarr;</a></p>
+
+"""
+
+
+def toc_layout(hero, body, tag):
+    """Give an area page a sticky side menu built from its own h2 headings."""
+    entries = []
+
+    def tag_h2(m):
+        text = re.sub(r"<[^>]+>", "", m.group(1)).strip()
+        slug = re.sub(r"[^a-z0-9]+", "-", html.unescape(text).lower()).strip("-")
+        entries.append((slug, text))
+        return f'<h2 id="{slug}">{m.group(1)}</h2>'
+
+    body = re.sub(r"<h2>(.*?)</h2>", tag_h2, body, flags=re.S)
+    links = "".join(f'<li><a href="#{slug}">{text}</a></li>' for slug, text in entries)
+    return f"""{hero}
+<div class="doc" style="--tag:var(--{tag.lower()})">
+<nav class="toc" aria-label="On this page"><ol>{links}</ol></nav>
+<div class="doc-body">
+{body}
+</div>
+</div>
+"""
+
+
+def slug(text):
+    return re.sub(r"[^a-z0-9]+", "-", html.unescape(text).lower()).strip("-")
+
+
+def area_weeks(tag):
+    """The weeks this area's practice list covers."""
+    span = AREAS[tag].get("practice_weeks")
+    if span:
+        first, last = span
+        return [w for w in WEEKS if first <= w[0] <= last]
+    return [w for w in WEEKS if any(a == tag for a, _ in w[3])]
+
+
+def next_practice_card(tag, practices):
+    """The next practice in this area - the one a coach is about to run."""
+    today = datetime.date.today()
+    upcoming = [w for w in area_weeks(tag)
+                if week_date(w[0]) is None or week_date(w[0]) >= today]
+    if not upcoming:
+        return ""
+    wk = upcoming[0][0]
+    d = week_date(wk)
+    when = d.strftime("%a %-d %b") if d else "date TBD"
+    plan = practices.get(wk)
+    if plan:
+        title = re.sub(rf"^{re.escape(TEAM)}\s*-\s*", "", plan["title"])
+        return (f'<a class="next" href="{esc(plan["url"])}">'
+                f'<span class="lbl">Next practice</span>'
+                f'<b>{esc(title)}</b><span class="when">{when} &middot; Week {wk}</span></a>')
+    return ('<div class="next pending">'
+            '<span class="lbl">Next practice</span>'
+            f'<b>Week {wk}</b><span class="when">{when} &middot; not built yet</span></div>')
+
+
+def drills_table(tag, mine):
+    """Drills grouped by sub-category, so the table reads as sections."""
+    def cell(d):
+        name = esc(d["drill"])
+        return f'<a href="{esc(d["link"])}">{name}</a>' if d["link"] else name
+
+    groups = {}
+    for d in mine:
+        subs = [x for x in d["subcategories"].split("|") if x]
+        groups.setdefault(subs[0] if subs else "Other", []).append(d)
+    order = sorted(groups, key=lambda g: (g == "Other", -len(groups[g]), g))
+
+    rows = ""
+    for g in order:
+        rows += (f'<tr id="d-{slug(g)}"><td colspan="3" '
+                 f'style="background:var(--bg);font-weight:650">{esc(g)}</td></tr>')
+        for d in sorted(groups[g], key=lambda r: r["drill"]):
+            extra = ", ".join(x for x in d["subcategories"].split("|") if x and x != g)
+            also = "".join(pill(x) for x in d["areas"].split("|") if x != tag and x)
+            rows += ('<tr><td>{}</td><td style="color:var(--muted)">{}</td>'
+                     "<td>{}</td></tr>").format(cell(d), esc(extra) or "-", also or "-")
+    return f"""<div class="scroll"><table>
+<thead><tr><th>Drill</th><th>Also trains</th><th>Also in</th></tr></thead>
+<tbody>{rows}</tbody></table></div>"""
+
+
+def build_area(tag, counts, drills, practices):
     a = AREAS[tag]
+    mine = [d for d in drills if tag in d["areas"].split("|")]
+    have = {s for d in mine for s in d["subcategories"].split("|") if s}
+
+    def step_name(name):
+        # Each focus area jumps to the drills that train it.
+        sub = a.get("step_drills", {}).get(name)
+        if sub and sub in have:
+            return (f'<a href="#d-{slug(sub)}">{name} '
+                    f'<span aria-hidden="true">&rarr;</span></a>')
+        return name
+
     steps = "".join(
-        f'<li style="--tag:var(--{tag.lower()})"><span class="when">{when}</span><b>{name}</b>{desc}</li>'
+        f'<li style="--tag:var(--{tag.lower()})"><span class="when">{when}</span>'
+        f"<b>{step_name(name)}</b>{desc}</li>"
         for name, when, desc in a["steps"]
     )
     say = "".join(f"<q>{s}</q>" for s in a["say"])
-    errors = "".join(f"<li>{e}</li>" for e in a["errors"])
 
-    mine = [d for d in drills if tag in d["areas"].split("|")]
-    if mine:
-        def drill_cell(d):
-            name = esc(d["drill"])
-            if d["link"]:
-                return '<a href="{}">{}</a>'.format(esc(d["link"]), name)
-            return name
-
-        drow = "".join(
-            "<tr><td>{}</td><td>{}</td><td>{}</td></tr>".format(
-                drill_cell(d),
-                esc(d["subcategories"].replace("|", ", ")),
-                "".join(pill(x) for x in d["areas"].split("|") if x != tag and x),
-            )
-            for d in sorted(mine, key=lambda r: r["drill"])
-        )
-        drill_html = f"""<div class="scroll"><table>
-<thead><tr><th>Drill</th><th>Sub-category</th><th>Also</th></tr></thead>
-<tbody>{drow}</tbody></table></div>"""
+    if isinstance(a["errors"], dict):
+        errors = '<div class="cols">' + "".join(
+            f"<div><h3>{head}</h3><ul class=\"rules\">"
+            + "".join(f"<li>{e}</li>" for e in items) + "</ul></div>"
+            for head, items in a["errors"].items()
+        ) + "</div>"
     else:
-        drill_html = '<p class="lede">No drills tagged to this area yet.</p>'
+        errors = '<ul class="rules">' + "".join(f"<li>{e}</li>" for e in a["errors"]) + "</ul>"
+
+    drill_html = (drills_table(tag, mine) if mine
+                  else '<p class="lede">No drills tagged to this area yet.</p>')
 
     num = list(AREAS).index(tag) + 1
     blurb_p = f"<p>{a['blurb']}</p>" if a["blurb"] else ""
@@ -613,31 +735,35 @@ def build_area(tag, counts, drills):
         epigraph = (f'<blockquote class="epigraph"><p>&ldquo;{text}&rdquo;</p>'
                     f'<cite>{source}</cite></blockquote>')
 
-    body = f"""<section class="hero">
+    practice_section = area_practices(tag, practices)
+
+    hero = f"""<section class="hero">
 <h1>{num}. {a['name']} {pill(tag)}</h1>
 {epigraph}
 {blurb_p}
+<div class="herofoot">
 <dl class="facts">
 <div><dt>Blocks</dt><dd>{counts[tag]}</dd></div>
 <div><dt>Drills</dt><dd>{len(mine)}</dd></div>
 </dl>
-</section>
+{next_practice_card(tag, practices)}
+</div>
+</section>"""
 
-{why_section}<h2>{a.get("steps_title", "The progression")}</h2>
+    body = f"""{why_section}<h2>{a.get("steps_title", "The progression")}</h2>
 {intro_p}
 <ol class="steps">{steps}</ol>
 
-{note_div}<h2>What to say on the ice</h2>
-<p class="lede">Same words from every coach. The kids should hear one phrase, not four versions of it.</p>
+{note_div}{practice_section}<h2>What to say on the ice</h2>
 <div class="say">{say}</div>
 
 <h2>What goes wrong</h2>
-<ul class="rules">{errors}</ul>
+{errors}
 
 <h2>Drills</h2>
 {drill_html}
 """
-    return page(a["name"], body, a["name"], depth=1)
+    return page(a["name"], toc_layout(hero, body, tag), a["name"], depth=1)
 
 
 def main():
@@ -651,7 +777,7 @@ def main():
     for tag, a in AREAS.items():
         target = DOCS / "areas" / f"{a['slug']}.html"
         if a["published"]:
-            target.write_text(build_area(tag, counts, drills))
+            target.write_text(build_area(tag, counts, drills, practices))
         elif target.exists():
             target.unlink()
 
