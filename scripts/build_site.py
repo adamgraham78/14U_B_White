@@ -513,47 +513,53 @@ def season_table(weeks, practices, phases=True):
     """The Season Plan grid - one row per practice, a column per segment.
 
     Shared by the Season Plan and the per-area practice lists, so an area page
-    shows its practices in exactly the format coaches already read.
+    shows its practices in exactly the format coaches already read. Every cell
+    carries its column name in data-h; on a phone the grid stacks into one card
+    per practice and the labels become the row headings.
     """
+    heads = ([SEGMENTS[0], "Checking"] + SEGMENTS[1:3] + ["Station C"] + SEGMENTS[3:]
+             + ["Practice plan"])
     rows = ""
     phase_seen = None
     for wk, phase, theme, segs in weeks:
         if phases and phase != phase_seen:
-            rows += f'<tr><td colspan="9" style="background:var(--bg);font-weight:650">{phase}</td></tr>'
+            rows += (f'<tr class="sub"><td colspan="9" style="background:var(--bg);'
+                     f'font-weight:650">{phase}</td></tr>')
             phase_seen = phase
         tags = [pill(a) for a, _ in segs]
         plan = practices.get(wk)
         fills = segment_drills(plan) if plan else {}
         logged = fills.get("check", [])
         if logged:
-            check = "<td>" + "".join(drill_html(d) for d in logged) + "</td>"
+            check = f'<td data-h="{heads[1]}">' + "".join(drill_html(d) for d in logged) + "</td>"
         else:
             step = CHECKING_CYCLE[(wk - 1) % len(CHECKING_CYCLE)]
-            check = (f'<td class="seg" style="text-transform:none;letter-spacing:0">'
-                     f'{step}</td>')
+            check = (f'<td data-h="{heads[1]}" class="seg" '
+                     f'style="text-transform:none;letter-spacing:0">{step}</td>')
         cells = ""
         for col, tag in enumerate([tags[0], tags[1], tags[2], "", tags[3]]):
+            h = heads[[0, 2, 3, 4, 5][col]]
             items = fills.get(col, [])
             if not tag and not items:
-                cells += '<td style="color:var(--muted)">-</td>'
+                cells += f'<td data-h="{h}" class="empty" style="color:var(--muted)">-</td>'
                 if col == 0:
                     cells += check
                 continue
             badge = tag or " ".join(
                 dict.fromkeys(b for b in (bonus_badge(d["name"]) for d in items) if b))
             # Drill names appear only once a practice has actually been logged.
-            cells += f'<td>{badge}{"".join(drill_html(d) for d in items)}</td>' 
+            cells += f'<td data-h="{h}">{badge}{"".join(drill_html(d) for d in items)}</td>'
             if col == 0:
                 cells += check
         plan_url = plan["url"] if plan else ""
-        cells += (f'<td><a href="{esc(plan_url)}">Plan</a></td>' if plan_url
-                  else '<td style="color:var(--muted)">-</td>')
+        cells += (f'<td data-h="{heads[6]}"><a href="{esc(plan_url)}">Plan</a></td>' if plan_url
+                  else f'<td data-h="{heads[6]}" class="empty" style="color:var(--muted)">-</td>')
         d = week_date(wk)
-        when = (f'<td class="wk" style="font-weight:400">{d.strftime("%a %-d %b")}</td>'
-                if d else '<td class="seg">TBD</td>')
-        rows += f'<tr><td class="wk">{wk}</td>{when}{cells}</tr>'
+        when = (f'<td data-h="Date" class="wk" style="font-weight:400">{d.strftime("%a %-d %b")}</td>'
+                if d else '<td data-h="Date" class="seg">TBD</td>')
+        rows += f'<tr><td data-h="Wk" class="wk">{wk}</td>{when}{cells}</tr>'
         if wk == BREAK_AFTER and wk != weeks[-1][0]:
-            rows += ('<tr><td colspan="9" style="background:var(--bg);color:var(--muted)">'
+            rows += ('<tr class="sub"><td colspan="9" style="background:var(--bg);color:var(--muted)">'
                      '&#127876; Holiday break - minimum 7 days off (ADM)</td></tr>')
 
     cols = ([SEGMENTS[0], "Checking <span style='font-weight:400;text-transform:none'>(5 min)</span>"]
@@ -561,9 +567,9 @@ def season_table(weeks, practices, phases=True):
             + ["Station C <span style='font-weight:400;text-transform:none'>(optional)</span>"]
             + SEGMENTS[3:]
             + ["Practice plan"])
-    heads = "".join(f"<th>{c}</th>" for c in cols)
-    return f"""<div class="scroll"><table>
-<thead><tr><th>Wk</th><th>Date</th>{heads}</tr></thead>
+    thead = "".join(f"<th>{c}</th>" for c in cols)
+    return f"""<div class="scroll stack"><table>
+<thead><tr><th>Wk</th><th>Date</th>{thead}</tr></thead>
 <tbody>{rows}</tbody>
 </table></div>"""
 
@@ -678,14 +684,18 @@ def drills_table(tag, mine):
 
     rows = ""
     for g in order:
-        rows += (f'<tr id="d-{slug(g)}"><td colspan="3" '
+        rows += (f'<tr id="d-{slug(g)}" class="sub"><td colspan="3" '
                  f'style="background:var(--bg);font-weight:650">{esc(g)}</td></tr>')
         for d in sorted(groups[g], key=lambda r: r["drill"]):
             extra = ", ".join(x for x in d["subcategories"].split("|") if x and x != g)
             also = "".join(pill(x) for x in d["areas"].split("|") if x != tag and x)
-            rows += ('<tr><td>{}</td><td style="color:var(--muted)">{}</td>'
-                     "<td>{}</td></tr>").format(cell(d), esc(extra) or "-", also or "-")
-    return f"""<div class="scroll"><table>
+            rows += (
+                '<tr><td data-h="Drill">{}</td>'
+                '<td data-h="Also trains" class="{}" style="color:var(--muted)">{}</td>'
+                '<td data-h="Also in" class="{}">{}</td></tr>'
+            ).format(cell(d), "" if extra else "empty", esc(extra) or "-",
+                     "" if also else "empty", also or "-")
+    return f"""<div class="scroll stack"><table>
 <thead><tr><th>Drill</th><th>Also trains</th><th>Also in</th></tr></thead>
 <tbody>{rows}</tbody></table></div>"""
 
