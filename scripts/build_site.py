@@ -509,7 +509,7 @@ and Driscoll sessions.</li>
     return page("Overview", body, "Overview")
 
 
-def season_table(weeks, practices, phases=True):
+def season_table(weeks, practices, phases=True, badge_with_drills=True):
     """The Season Plan grid - one row per practice, a column per segment.
 
     Shared by the Season Plan and the per-area practice lists, so an area page
@@ -547,6 +547,8 @@ def season_table(weeks, practices, phases=True):
                 continue
             badge = tag or " ".join(
                 dict.fromkeys(b for b in (bonus_badge(d["name"]) for d in items) if b))
+            if items and not badge_with_drills:
+                badge = ""
             # Drill names appear only once a practice has actually been logged.
             cells += f'<td data-h="{h}">{badge}{"".join(drill_html(d) for d in items)}</td>'
             if col == 0:
@@ -608,7 +610,7 @@ def area_practices(tag, practices):
     if not weeks:
         return ""
     return f"""<h2>Practices</h2>
-{season_table(weeks, practices, phases=False)}
+{season_table(weeks, practices, phases=False, badge_with_drills=False)}
 <p><a href="../weeks.html">See the full season plan &rarr;</a></p>
 
 """
